@@ -3,7 +3,7 @@ from __future__ import unicode_literals, division, absolute_import
 from gatesym.gates import Placeholder, Switch
 from gatesym.utils import PlaceholderWord
 from gatesym.modules import bus, cpu_core, math, memory, literals, jump
-from gatesym import core, profiler
+from gatesym import core_ffi, profiler
 from gatesym.test_utils import BinaryOut
 
 
@@ -195,11 +195,11 @@ def assemble(code):
 
 
 def main():
-    network = core.Network()
+    network = core_ffi.Network()
     clock = Switch(network)
     write, res = computer(clock, primes())
 
-    print "size:", profiler.size(network)
+    # print "size:", profiler.size(network)
 
     res = BinaryOut(res)
     network.drain()
